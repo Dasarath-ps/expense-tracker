@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import AuthLayout from "../components/layout/AuthLayout";
+import AuthLayout from "../../components/layout/AuthLayout";
 import { Link } from "react-router-dom";
-import Input from "../components/layout/Input";
-import { validationEmail } from "../utils/helper";
+import Input from "../../components/layout/Input";
+import { validationEmail } from "../../utils/helper";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

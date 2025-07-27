@@ -5,8 +5,8 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import Register from "./pages/Auth/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import { useEffect } from "react";
 const App = () => {

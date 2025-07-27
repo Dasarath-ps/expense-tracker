@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import AuthLayout from "../components/layout/AuthLayout";
-import Input from "../components/layout/Input";
+import AuthLayout from "../../components/layout/AuthLayout";
+import Input from "../../components/layout/Input";
 import { Link } from "react-router-dom";
-import { validationEmail } from "../utils/helper";
-import ProfilePicture from "../components/layout/ProfilePicture";
+import { validationEmail } from "../../utils/helper";
+import ProfilePicture from "../../components/layout/ProfilePicture";
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
