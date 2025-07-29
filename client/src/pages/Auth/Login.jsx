@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import AuthLayout from "../../components/layout/AuthLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/layout/Input";
 import { validationEmail } from "../../utils/helper";
+import axios from "axios";
 const Login = () => {
+  const navigator = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,6 +23,15 @@ const Login = () => {
       setError("Please enter Password");
       return;
     }
+    axios
+      .post("http://localhost:8000/auth/login", { email, password })
+      .then((res) => {
+        console.log(res.data);
+        navigator("/dashboard");
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+      });
   };
   return (
     <AuthLayout>

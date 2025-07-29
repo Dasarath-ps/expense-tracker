@@ -23,6 +23,7 @@ export const userLogin = async (req, res) => {
   }
 };
 export const userRegister = async (req, res) => {
+  console.log(req.body);
   if (!req) return res.statur(400).json({ message: "All field are required" });
 
   try {
@@ -39,6 +40,7 @@ export const userRegister = async (req, res) => {
       email: email,
       password: password,
     });
+    console.log(user);
     res.status(201).json({
       message: "Sucsses",
       id: user._id,

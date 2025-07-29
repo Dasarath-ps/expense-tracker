@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../../components/layout/AuthLayout";
 import Input from "../../components/layout/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { validationEmail } from "../../utils/helper";
 import ProfilePicture from "../../components/layout/ProfilePicture";
+import axios from "axios";
 const Register = () => {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
+
   const handleRegister = (e) => {
     e.preventDefault();
     if (!fullName) {
@@ -27,6 +30,19 @@ const Register = () => {
       setError("Please enter Password");
       return;
     }
+    axios
+      .post("http://localhost:8000/auth/register", {
+        fullName,
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+      });
   };
   return (
     <AuthLayout>
