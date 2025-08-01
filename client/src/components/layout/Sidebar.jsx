@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import ProfilePicture from "./ProfilePicture";
 import { LuLayoutDashboard, LuLogOut } from "react-icons/lu";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { TbPigMoney } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { FaChevronCircleLeft } from "react-icons/fa";
-const Sidebar = ({ showSidebar, setShowSidebar }) => {
-  const [profilePicture, setProfilePicture] = useState(null);
-  console.log(showSidebar);
+const Sidebar = ({ showSidebar, setShowSidebar, user }) => {
+  console.log(user);
+  //const [profilePicture, setProfilePicture] = useState(null);
   return (
     <div
-      className={`bg-primary flex flex-col gap-[20px] w-[300px] absolute top-0 h-screen transition-all duration-500  ${
+      className={`bg-primary flex rounded-r-2xl flex-col gap-[20px] w-[300px] absolute top-0 h-screen transition-all duration-500  ${
         showSidebar ? "left-[0]" : "left-[-300px]"
       }`}
     >
@@ -21,10 +20,14 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
           </div>
         </button>
       </div>
-      <div className="flex justify-center items-center">
-        <ProfilePicture
-          profilePicture={profilePicture}
-          setProfilePicture={setProfilePicture}
+      <div className="flex justify-center items-center flex-col gap-3">
+        <label className="text-secondary font-bold" htmlFor="username">
+          {user.user ? user.user.fullName : ""}
+        </label>
+        <img
+          className="w-20 h-20 rounded-full object-cover border-2 border-secondary"
+          src={user.user ? user.user.profilePicture : null}
+          alt="Profile"
         />
       </div>
       <NavLink to={"/dashboard"}>
@@ -86,4 +89,12 @@ const Title = ({ value, icon, active }) => {
       {icon}
     </div>
   );
+};
+
+const image = ({ imageUrl }) => {
+  <div
+    className={`flex justify-center items-center gap-4 text-xl text-secondary bg-primary rounded-3xl font-semibold py-8 hover:bg-primary-alt hover:text-2xl hover:text-tertiary transition-all duration-500 ${active}`}
+  >
+    <img src={imageUrl} alt="" />
+  </div>;
 };

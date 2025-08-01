@@ -23,13 +23,10 @@ export const userLogin = async (req, res) => {
   }
 };
 export const userRegister = async (req, res) => {
-  console.log(req.body);
-  if (!req) return res.statur(400).json({ message: "All field are required" });
-
   try {
-    const { fullName, email, password } = req.body;
+    const { fullName, email, password, profilePicture } = req.body;
     if (!fullName || !email || !password) {
-      res.status(400), json({ message: "All field are required." });
+      res.status(400).json({ message: "All field are required." });
     }
 
     const existingUser = await userModel.findOne({ email: email });
@@ -39,16 +36,17 @@ export const userRegister = async (req, res) => {
       fullName: fullName,
       email: email,
       password: password,
+      profilePicture: profilePicture,
     });
     console.log(user);
-    res.status(201).json({
+    return res.status(201).json({
       message: "Sucsses",
       id: user._id,
       user: user,
       token: generateToken(user._id),
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 export const getUser = async (req, res) => {

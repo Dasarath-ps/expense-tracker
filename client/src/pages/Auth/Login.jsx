@@ -11,12 +11,12 @@ const Login = () => {
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
-    if (!validationEmail(email)) {
-      setError("Please enter a valid email");
-      return;
-    }
     if (!email) {
       setError("Please enter email");
+      return;
+    }
+    if (!validationEmail(email)) {
+      setError("Please enter a valid email");
       return;
     }
     if (!password) {
@@ -27,10 +27,14 @@ const Login = () => {
       .post("http://localhost:8000/auth/login", { email, password })
       .then((res) => {
         console.log(res.data);
+        localStorage.setItem("token", res.data.token);
         navigator("/dashboard");
       })
       .catch((err) => {
-        console.log("Error : ", err);
+        console.error("Login error:", err);
+        setError(
+          err.response?.data?.message || "Login failed. Please try again."
+        );
       });
   };
   return (

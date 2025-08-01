@@ -51,11 +51,11 @@ const Register = () => {
             },
           }
         );
-        uploadedImagePath = imageRes.data?.path || imageRes.data?.url;
+        console.log("imageRes : ", imageRes);
+        uploadedImagePath = imageRes.data.imageUrl;
       }
-
       //Add your registration API call here
-      await axios.post("/auth/register", {
+      await axios.post("http://localhost:8000/auth/register", {
         fullName,
         email,
         password,
@@ -64,6 +64,7 @@ const Register = () => {
 
       navigate("/login"); // Redirect after successful registration
     } catch (err) {
+      console.error("Error during registration:", err);
       setError(err.response?.data?.message || "Registration failed");
     }
   };
