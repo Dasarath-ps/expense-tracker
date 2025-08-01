@@ -5,6 +5,5 @@ export const validationEmail = (email) => {
 
 export const userLoggedIn = () => {
   const isAuthenticated = !!localStorage.getItem("token");
-  console.log("hello");
   return isAuthenticated;
 };

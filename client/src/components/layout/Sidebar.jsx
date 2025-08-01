@@ -5,11 +5,10 @@ import { TbPigMoney } from "react-icons/tb";
 import { NavLink } from "react-router-dom";
 import { FaChevronCircleLeft } from "react-icons/fa";
 const Sidebar = ({ showSidebar, setShowSidebar, user }) => {
-  console.log(user);
   //const [profilePicture, setProfilePicture] = useState(null);
   return (
     <div
-      className={`bg-primary flex rounded-r-2xl flex-col gap-[20px] w-[300px] absolute top-0 h-screen transition-all duration-500  ${
+      className={`bg-primary flex border-2 border-r-tertiary flex-col gap-[20px] w-[300px] absolute top-0 h-screen transition-all duration-500  ${
         showSidebar ? "left-[0]" : "left-[-300px]"
       }`}
     >
@@ -25,7 +24,7 @@ const Sidebar = ({ showSidebar, setShowSidebar, user }) => {
           {user.user ? user.user.fullName : ""}
         </label>
         <img
-          className="w-20 h-20 rounded-full object-cover border-2 border-secondary"
+          className="w-20 h-20 rounded-full object-cover border-2 border-tertiary"
           src={user.user ? user.user.profilePicture : null}
           alt="Profile"
         />
