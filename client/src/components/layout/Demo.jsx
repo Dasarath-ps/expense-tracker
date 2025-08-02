@@ -3,8 +3,12 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Menu from "../smallitems/Menu";
-const Demo = ({ user }) => {
+import useAuth from "../../hooks/useAuth.js";
+const Demo = () => {
   const [showSidebar, setShowSidebar] = useState(true);
+  let [user, setUser] = useState({});
+
+  useAuth(setUser);
   return (
     <div className="grid grid-cols-[300px_1fr] ">
       <Sidebar
