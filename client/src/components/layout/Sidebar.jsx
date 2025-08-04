@@ -8,9 +8,12 @@ const Sidebar = ({ showSidebar, setShowSidebar, user }) => {
   //const [profilePicture, setProfilePicture] = useState(null);
   return (
     <div
-      className={`bg-primary flex border-2 border-r-tertiary flex-col gap-[20px] w-[300px] absolute top-0 h-screen transition-all duration-500  ${
-        showSidebar ? "left-[0]" : "left-[-300px]"
-      }`}
+      className={
+        `bg-primary flex border-2 border-r-tertiary flex-col gap-[20px] w-[300px]  h-screen transition-all duration-500  `
+        //   ${
+        //    showSidebar ? "left-[0]" : "left-[-300px]"
+        // }
+      }
     >
       <div className="flex flex-col items-end text-secondary ">
         <button onClick={() => setShowSidebar(false)}>

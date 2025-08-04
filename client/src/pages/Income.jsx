@@ -3,7 +3,7 @@ import BarChart from "../components/chart/BarChart";
 
 const Income = () => {
   return (
-    <div className="bg-primary h-screen">
+    <div className="">
       <BarChart />
     </div>
   );

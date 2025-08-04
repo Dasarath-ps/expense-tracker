@@ -10,14 +10,21 @@ const Demo = () => {
 
   useAuth(setUser);
   return (
-    <div className="grid grid-cols-[300px_1fr] ">
+    <div className="grid grid-cols-[300px_1fr] gap-1 bg-primary">
       <Sidebar
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
         user={user}
       />
-      <Menu showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      <Outlet />
+      <div className="">
+        <Menu
+          showSidebar={showSidebar}
+          setShowSidebar={setShowSidebar}
+          user={user}
+        />
+
+        <Outlet />
+      </div>
     </div>
   );
 };
