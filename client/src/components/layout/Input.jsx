@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 
-const Input = ({ label, placeholder, type, onChange }) => {
+const Input = ({ value, label, placeholder, type, onChange }) => {
   const [showPassword, setShowPassword] = useState(false);
   // console.log(showPassword);
   const visiblePassword = (e) => {
@@ -14,6 +14,7 @@ const Input = ({ label, placeholder, type, onChange }) => {
       <div className="p-2 grid grid-cols-[300px_1fr] h-full border-2 border-secondary rounded-2xl justify-between items-center ">
         <input
           className="p-2] focus:outline-none"
+          value={value}
           type={
             type == "password" ? (showPassword ? "text" : "password") : type
           }

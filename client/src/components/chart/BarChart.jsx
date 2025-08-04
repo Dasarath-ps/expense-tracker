@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Input from "../layout/Input";
 import { TfiGallery } from "react-icons/tfi";
-
+import EmojiPicker from "emoji-picker-react";
 const BarChart = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
@@ -29,33 +29,49 @@ const BarChart = () => {
 
 export default BarChart;
 const IncomeForm = ({ onClose }) => {
+  const [incomeSource, setIncomeSource] = useState("");
   const [amount, setAmount] = useState("");
-
+  const [date, setDate] = useState();
+  const [showPicker, setShowPicker] = useState("false");
+  const [chooseEmoji, setChooseEmoji] = useState(null);
+  const handleEmojiClick = (emojiData) => {
+    setChooseEmoji(emojiData.emoji);
+    setShowPicker(false);
+  };
   return (
     <div className="bg-primary-alt px-8 py-20 border-2 w-[550px] rounded-2xl border-tertiary relative shadow-2xl">
-      <form className="">
-        <div className="text-tertiary text-2xl flex justify-center items-center gap-2.5 mb-6">
-          <TfiGallery />
-          <p className="text-xl text-secondary">Pick Icon</p>
-        </div>
+      <form className="flex flex-col justify-center content-center">
+        <button
+          className="text-tertiary text-2xl flex justify-center items-center gap-2.5 mb-6"
+          type="button"
+          onClick={() => setShowPicker(!showPicker)}
+        >
+          <EmojiPicker onEmojiClick={handleEmojiClick} />
+          <p className="text-xl text-secondary">
+            {chooseEmoji || "Pick Emoji"}
+          </p>
+        </button>
 
         <Input
+          value={incomeSource}
           label={"Income Source"}
           placeholder="Freelancer"
           type={"text"}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) => setIncomeSource(e.target.value)}
         />
         <Input
+          value={amount}
           label={"Amount"}
           placeholder="12000"
           type={"number"}
           onChange={(e) => setAmount(e.target.value)}
         />
         <Input
+          value={date}
           label={"Date"}
           placeholder="dd/mm/yy"
           type={"date"}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) => setDate(e.target.value)}
         />
 
         <div className="flex justify-between items-center mt-6">
@@ -66,7 +82,10 @@ const IncomeForm = ({ onClose }) => {
           >
             Close
           </button>
-          <button className="text-secondary font-bold border-2 border-tertiary py-2 px-4 rounded-2xl">
+          <button
+            className="text-secondary font-bold border-2 border-tertiary py-2 px-4 rounded-2xl"
+            type="submit"
+          >
             Add Income
           </button>
         </div>
